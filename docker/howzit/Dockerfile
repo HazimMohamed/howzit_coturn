@@ -17,5 +17,9 @@ RUN make
 EXPOSE 3478 3478/udp
 
 VOLUME ["/coturn/storage"]
+VOLUME ["/coturn/logs"]
+VOLUME ["/coturn/certificates"]
 
-ENTRYPOINT ["/coturn/docker/howzit-start.sh"]
+RUN chmod 777 /coturn/howzit_coturn/docker/howizt-start.sh
+
+ENTRYPOINT ["/bin/sh", "/coturn/howzit_coturn/docker/howizt-start.sh"]

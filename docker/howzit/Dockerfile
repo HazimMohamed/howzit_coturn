@@ -6,8 +6,11 @@ RUN apt-get install -y --no-install-recommends --no-install-suggests \
     libevent-dev libssl-dev libsqlite3-dev libmicrohttpd-dev
 RUN update-ca-certificates
 
+RUN mkdir -p /coturn/logs
 RUN mkdir -p /coturn/storage
+RUN mkdir -p /coturn/howzit_coturn
 WORKDIR /coturn
+# Maybe make this repo private at some point
 RUN git clone https://github.com/HazimMohamed/howzit_coturn.git
 WORKDIR /coturn/howzit_coturn
 
@@ -18,8 +21,8 @@ EXPOSE 3478 3478/udp
 
 VOLUME ["/coturn/storage"]
 VOLUME ["/coturn/logs"]
-VOLUME ["/coturn/certificates"]
+VOLUME ["/certificates"]
 
-RUN chmod 777 /coturn/howzit_coturn/docker/howizt-start.sh
+RUN chmod 755 /coturn/howzit_coturn/docker/howzit-start.sh
 
-ENTRYPOINT ["/bin/sh", "/coturn/howzit_coturn/docker/howizt-start.sh"]
+ENTRYPOINT ["/bin/sh", "/coturn/howzit_coturn/docker/howzit-start.sh"]

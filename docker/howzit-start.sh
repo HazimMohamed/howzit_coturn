@@ -1,1 +1,1 @@
-bin/turnserver -c docker/howzit/docker_config.conf
+/coturn/howzit_coturn/bin/turnserver -c /coturn/howzit_coturn/docker/howzit/docker_config.conf
